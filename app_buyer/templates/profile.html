@@ -1,0 +1,58 @@
+
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+
+  <!-- contact section -->
+  <section class="contact_section layout_padding">
+    <div class="container">
+      <div class="heading_container">
+        <h2>
+          Profile PAge
+        </h2>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form_container">
+            <h2>{{msg}}</h2>
+            <form action="{% url 'profile'%} " method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                
+              <div>
+                <input type="text" placeholder="UserName" name="uname" value="{{user_data.username}}" />
+              </div>
+              <div>
+                <input type="email" placeholder="Email" name="email" value="{{user_data.email}}" />
+              </div>
+              <div>
+                <input type="password" placeholder="Old Password" name="opassword"  />
+              </div>
+              <div>
+                <input type="password" placeholder="New Password" name="npassword"  />
+              </div>
+              <div>
+                <input type="password" placeholder="Confirm New Password" name="cnpassword"  />
+              </div>
+              <div class="btn_box">
+                <button type="submit">
+                  Update profile
+                </button>
+              </div>
+            </div>
+        </div>
+        <div class="col-md-6 ">
+            <div class="map_container">
+                <div class="map">
+                    <img src="{{user_data.profile_pic.url}}" alt=""> <br>
+                    <input type="file" name="propic" />
+                    {% comment %} <div id="googleMap"></div> {% endcomment %}
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+    </div>
+  </section>
+  <!-- end contact section -->
+
+{% endblock %}
